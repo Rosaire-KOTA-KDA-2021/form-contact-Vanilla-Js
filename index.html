@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentt</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/rkota-grid-help.css">
+     <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header class="container-fluid">
+        <h1>Répertoire de contact</h1>
+    </header>
+    <main class="container-fluid">
+        <section class="row">
+            <div class="medium-col-6 card">
+                <h2>Formulaire de contact</h2>
+                <form action="" method="post" class="row form-group">
+                    <div class="medium-col-12">
+                        <label for="firstname">Pénom</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname">
+                    </div>
+                    <div class="medium-col-12">
+                        <label for="name">Nom</label>
+                        <input type="text" name="name" class="form-control" id="name">
+                    </div>
+                    <div class="medium-col-12">
+                        <label for="groupe">Groupe</label>
+                        <select name="groupe" class="form-control" id="groupe">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        
+                    </div>
+                    <div class="medium-col-12">
+                        <label for="groupe">Bio</label>
+                        <textarea name="" class="form-control" id="bio" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="medium-col-12">
+                        <div class="row">
+                            <div class="medium-col-6">
+                                <label for="photo">Choisir un fichier</label>
+                                <input type="file"  class="form-control" alt="" id="photo">
+                            </div>
+                            <div class="medium-col-6">
+                                <img src="images/profile.svg" alt="photo" srcset="" id="photo" class="img-circle img-home">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="medium-col-2">
+                        <button type="submit" class="btn btn-primary" id="btn-create">Créer</button>
+                    </div>
+                    <div class="medium-col-2">
+                        <button type="reset" class="btn btn-danger" id="btn-reset">Réinit.</button>
+                    </div>
+                </form>
+            </div>
+            <div class="medium-col-6 card card-id" >
+                <h2>Liste de contact</h2>
+                
+            </div>
+        </section>
+        
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

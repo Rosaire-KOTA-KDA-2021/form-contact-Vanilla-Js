@@ -1,0 +1,139 @@
+.container{
+    margin-right: 2%;
+    margin-left: 1%;
+
+}
+.container-fluid{
+   width: 100%;
+
+}
+
+.row{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1rem;
+    
+}
+
+/** VERSION TELEPHONES (small)=sm */
+
+    .small-col-1{
+        grid-column: span 12;
+    }
+    .small-col-2{
+        grid-column: span 2;
+    }
+    .small-col-3{
+        grid-column: span 3;
+    }
+    .small-col-4{
+        grid-column: span 4;
+    }
+    .small-col-5{
+        grid-column: span 5;
+    }
+    .small-col-6{
+        grid-column: span 6;
+    }
+    .small-col-7{
+        grid-column: span 7;
+    }
+    .small-col-8{
+        grid-column: span 8;
+    }
+    .small-col-9{
+        grid-column: span 9;
+    }
+    .small-col-10{
+        grid-column: span 10;
+    }
+    .small-col-11{
+        grid-column: span 11;
+    }
+    .small-col-12{
+        grid-column: span 12;
+    }
+   
+
+/** VERSION Ecran Medium= md  */
+
+@media screen and (min-width:768px){
+    .medium-col-1{
+        grid-column: span 1;
+    }
+    .medium-col-2{
+        grid-column: span 2;
+    }
+    .medium-col-3{
+        grid-column: span 3;
+    }
+    .medium-col-4{
+        grid-column: span 4;
+    }
+    .medium-col-5{
+        grid-column: span 5;
+    }
+    .medium-col-6{
+        grid-column: span 6;
+    }
+    .medium-col-7{
+        grid-column: span 7;
+    }
+    .medium-col-8{
+        grid-column: span 8;
+    }
+    .medium-col-9{
+        grid-column: span 9;
+    }
+    .medium-col-10{
+        grid-column: span 10;
+    }
+    .medium-col-11{
+        grid-column: span 11;
+    }
+    .medium-col-12{
+        grid-column: span 12;
+    }
+}
+
+
+/** VERSION Ecran Large =lg  */
+
+@media screen and (min-width:1280px){
+    .large-col-1{
+        grid-column: span 1;
+    }
+    .large-col-2{
+        grid-column: span 2;
+    }
+    .large-col-3{
+        grid-column: span 3;
+    }
+    .large-col-4{
+        grid-column: span 4;
+    }
+    .large-col-5{
+        grid-column: span 5;
+    }
+    .large-col-6{
+        grid-column: span 6;
+    }
+    .large-col-7{
+        grid-column: span 7;
+    }
+    .large-col-8{
+        grid-column: span 8;
+    }
+    .large-col-9{
+        grid-column: span 9;
+    }
+    .large-col-10{
+        grid-column: span 10;
+    }
+    .large-col-11{
+        grid-column: span 11;
+    }
+    .large-col-12{
+        grid-column: span 12;
+    }
+}
