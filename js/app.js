@@ -1,102 +1,147 @@
-var fistname = document.querySelector("#firstname");
-var nom = document.querySelector("#name");
-var groupe = document.querySelector("#groupe");
-var bio = document.querySelector("#bio");
-var btnAdd = document.querySelector("#btn-create");
-var personnes = [];
-var listBtnDeletes = [];
+let firstName = document.querySelector("#first-name");
 
-var flexCont = document.querySelector(".card-id");
+let lastName = document.querySelector("#last-name");
+let group = document.querySelector("#group");
+let biography = document.querySelector("#biography");
+let btnAdd = document.querySelector("#btn-create");
+let contactList = [];
+let listBtnDeletes = [];
+let contactListContainer = document.querySelector(".card-id");
+// File
+let avatar = document.querySelector("#image-file"); // file from input
+let imagePreview = document.querySelector("#image-preview-avatar");
+// let req = new XMLHttpRequest();
+// let formData = new FormData();
 
-// Creation de l'objet Personne
-function Personne(fistnamep, nomp, groupep, biop) {
-	this.fistname = fistnamep;
-	this.nom = nomp;
-	this.groupe = groupep;
-	this.bio = biop;
+// formData.append("avatar", avatar);
+// req.open("POST", 'images/');
+// req.send(formData);
+
+// Upload de l'image
+
+function uploadFile(e) {
+  e.preventDefault();
+  if (this.files[0]) {
+    imagePreview.src = URL.createObjectURL(this.files[0]);
+    //imagePreview.onload=imgLoaded;
+  }
+}
+avatar.addEventListener("change", uploadFile);
+
+// Creation de l'objet Contact
+function Contact(firstName, lastName, group, biography, avatar) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.group = group;
+  this.biography = biography;
+  this.avatar = avatar;
 }
 
-// Fonction add: on ajute les personnes(objets)
+// Fonction add: on ajute les contactList(objets)
 
-function add(e) {
-	e.preventDefault();
-	personne = new Personne(fistname.value, nom.value, groupe.value, bio.value);
-	personnes.push(personne);
-	addOnDom();
+function addContact(e) {
+  e.preventDefault();
+  let contact = new Contact(
+    firstName.value,
+    lastName.value,
+    group.value,
+    biography.value,
+    imagePreview.src
+  );
+
+  contactList.push(contact);
+
+  let vide = contactList.every(() => " ");
+  console.log(vide);
+  if (validation(contact)) {
+  } else {
+    renderItems();
+  }
+  // on rend les items sur le DOM
 }
+
+function validation(contact) {
+  if (contact.firstName == "") {
+    valide.style.border = "1px solid red";
+    let labelMessage = document.querySelector(".labelMessage");
+    labelMessage.textContent = "Veuillez remplir tous les champs";
+    labelMessage.style.color = "red";
+    labelMessage.style.marginLeft = "4rem";
+    labelMessage.style.marginTop = "-14rem";
+    valide.classList.toggle("border-danger");
+    return true;
+  } else {
+    return false;
+  }
+}
+// btnAdd: on ecute et execute l'evenement clique du bouton creer
+
+btnAdd.addEventListener("click", addContact);
 
 // Fonction addDom: on creer et ajute nos element au Dom
 
-function addOnDom() {
-	var content = document.createElement("div");
-	var imgdiv = document.createElement("div");
-	var img = document.createElement("img");
-	var title = document.createElement("h3");
-	var spanNom = document.createElement("span");
-	var spanPrenom = document.createElement("span");
-	var title2 = document.createElement("h3");
-	var myparagraphe = document.createElement("p");
-	var btnDelete = document.createElement("button");
-	var contents = document.createElement("div");
-	var i = document.createElement("i");
-	content.classList.toggle("flex-contact");
-	img.classList.add("img-profile");
-	img.setAttribute("src", "images/profile.svg");
-	img.setAttribute("alt", "profile-contact");
-	img.classList.add("img-circle");
-	imgdiv.style.marginRight="3rem";
-	title.style.textAlign="center";
-	title2.style.textAlign="center";
+function renderItems() {
+  let card = document.createElement("div");
+  let imgContainer = document.createElement("div");
+  let imgProfile = document.createElement("img");
+  let titleContainer = document.createElement("h3");
+  let titleLastName = document.createElement("span");
+  let titleFirstName = document.createElement("span");
+  let titleGroup = document.createElement("h4");
+  let textBiography = document.createElement("p");
+  let btnDelete = document.createElement("button");
+  let cardContent = document.createElement("div");
 
-	for (const perso of personnes) {
-		spanNom.textContent = perso.nom;
-		spanNom.style.marginRight = "10px";
-		spanPrenom.textContent = perso.fistname;
+  card.classList.add("flex-contact");
 
-		title2.textContent = perso.groupe;
+  imgProfile.setAttribute("src", imagePreview.src);
+  imgProfile.setAttribute("alt", "profile-contact");
+  imgProfile.classList.add("img-circle");
 
-		myparagraphe.textContent = perso.bio;
+  imgContainer.classList.add("img-container");
+  titleContainer.classList.add("title-container");
+  titleGroup.classList.add("title-group");
 
-		btnDelete.textContent = "x";
-		btnDelete.style.cursor = "pointer";
-		btnDelete.style.border = "0px";
-		btnDelete.style.backgroundColor = "white";
-		btnDelete.style.width = "3rem";
-		btnDelete.style.height = "3rem";
-		btnDelete.style.color = "#eb5757";
-		btnDelete.style.fontSize = "35px";
-		btnDelete.id = "delete";
-	}
+  for (const perso of contactList) {
+    titleLastName.textContent = perso.lastName;
+    titleLastName.classList.add("title-last-name");
+    titleFirstName.textContent = perso.firstName;
 
-	imgdiv.appendChild(img);
-	content.appendChild(imgdiv);
-	title.appendChild(spanNom);
-	title.appendChild(spanPrenom);
-	contents.appendChild(title);
-	contents.appendChild(title2);
-	contents.appendChild(myparagraphe);
-	content.appendChild(contents);
-	content.appendChild(btnDelete);
-	flexCont.appendChild(content);
-	listBtnDeletes.push(btnDelete);
-	
+    titleGroup.textContent = perso.group;
+
+    textBiography.textContent = perso.biography;
+
+    btnDelete.textContent = "x";
+    btnDelete.classList.add("btn-delete");
+    btnDelete.id = "delete";
+  }
+
+  imgContainer.appendChild(imgProfile);
+  card.appendChild(imgContainer);
+  titleContainer.appendChild(titleLastName);
+  titleContainer.appendChild(titleFirstName);
+  cardContent.appendChild(titleContainer);
+  cardContent.appendChild(titleGroup);
+  cardContent.appendChild(textBiography);
+  card.appendChild(cardContent);
+  card.appendChild(btnDelete);
+  contactListContainer.appendChild(card);
+  listBtnDeletes.push(btnDelete);
+
+  //
+  addToDeleteItems();
 }
-
-// btnAdd: on ecute et execute l'evenement clique du bouton creer
-
-btnAdd.addEventListener("click", add);
-
+function createChilds() {}
 // Suppression
-function deleteItems() {
-	listBtnDeletes.forEach(element => {
-		
-		element.addEventListener("click", function (e) {
-
-			
-			flexCont.removeChild(element.parentElement);
-			console.log(element.parentElement)
-			
-		});
-	});
+function addToDeleteItems() {
+  for (const element of listBtnDeletes) {
+    element.addEventListener("click", function (e) {
+      contactListContainer.removeChild(element.parentElement);
+      console.log(element.parentElement);
+    });
+  }
 }
-deleteItems()
+
+// (function(){
+// 	console.log()
+// })()
